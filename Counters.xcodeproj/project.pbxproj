@@ -13,6 +13,7 @@
 		84DFB5DA22D46D09001F56AA /* Counters.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84DFB5D822D46D09001F56AA /* Counters.xcdatamodeld */; };
 		84DFB5DC22D46D0B001F56AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84DFB5DB22D46D0B001F56AA /* Assets.xcassets */; };
 		84DFB5DF22D46D0B001F56AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84DFB5DD22D46D0B001F56AA /* LaunchScreen.storyboard */; };
+		84DFB5E722D4BD08001F56AA /* CounterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DFB5E622D4BD08001F56AA /* CounterCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		84DFB5DB22D46D0B001F56AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84DFB5DE22D46D0B001F56AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84DFB5E022D46D0B001F56AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84DFB5E622D4BD08001F56AA /* CounterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				84DFB5D122D46D09001F56AA /* AppDelegate.swift */,
 				84DFB5D322D46D09001F56AA /* ViewController.swift */,
+				84DFB5E622D4BD08001F56AA /* CounterCell.swift */,
 				84DFB5D522D46D09001F56AA /* Main.storyboard */,
 				84DFB5DB22D46D0B001F56AA /* Assets.xcassets */,
 				84DFB5DD22D46D0B001F56AA /* LaunchScreen.storyboard */,
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84DFB5E722D4BD08001F56AA /* CounterCell.swift in Sources */,
 				84DFB5D422D46D09001F56AA /* ViewController.swift in Sources */,
 				84DFB5DA22D46D09001F56AA /* Counters.xcdatamodeld in Sources */,
 				84DFB5D222D46D09001F56AA /* AppDelegate.swift in Sources */,
