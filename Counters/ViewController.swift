@@ -23,6 +23,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var helperIcon: UIImageView!
     
     var isLightMode = UserDefaults.standard.bool(forKey: "is_light_mode")
+    var style:UIStatusBarStyle = .default
     
     var counters: [NSManagedObject] = []
     
@@ -36,8 +37,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         settingsButton.setImage(UIImage(named: "SettingsWhite")?.withRenderingMode(.alwaysTemplate), for: .normal)
         addButton.setImage(UIImage(named: "PlusWhite")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        helperIcon.image = UIImage(named: "HelpArrowWhite")?.withRenderingMode(.alwaysTemplate)
         
         updateCounters()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return self.style
     }
     
     public func updateCounters() {
@@ -67,48 +73,50 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBAction func onAddButton() {
-        let alert = UIAlertController(title: "New Name",
-                                      message: "Add a new name",
-                                      preferredStyle: .alert)
-        
-        let saveAction = UIAlertAction(title: "Save", style: .default) { [unowned self] action in
-                                        
-            guard let textField = alert.textFields?.first,
-                let counterName = textField.text else {
-                    return
-            }
-            
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                    return
-            }
-            let managedContext = appDelegate.persistentContainer.viewContext
-            
-            let entity = NSEntityDescription.entity(forEntityName: "Counter", in: managedContext)!
-            
-            let counter = NSManagedObject(entity: entity, insertInto: managedContext)
-            
-            counter.setValue(counterName, forKeyPath: "name")
-            
-            do {
-                try managedContext.save()
-                self.counters.append(counter)
-                DispatchQueue.main.async {
-                    self.updateCounters()
-                }
-            } catch let error as NSError {
-                print("Could not save. \(error), \(error.userInfo)")
-            }
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel",
-                                         style: .cancel)
-        
-        alert.addTextField()
-        
-        alert.addAction(saveAction)
-        alert.addAction(cancelAction)
-        
-        present(alert, animated: true)
+//        let alert = UIAlertController(title: "New Name",
+//                                      message: "Add a new name",
+//                                      preferredStyle: .alert)
+//
+//        let saveAction = UIAlertAction(title: "Save", style: .default) { [unowned self] action in
+//
+//            guard let textField = alert.textFields?.first,
+//                let counterName = textField.text else {
+//                    return
+//            }
+//
+//            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+//                    return
+//            }
+//            let managedContext = appDelegate.persistentContainer.viewContext
+//
+//            let entity = NSEntityDescription.entity(forEntityName: "Counter", in: managedContext)!
+//
+//            let counter = NSManagedObject(entity: entity, insertInto: managedContext)
+//
+//            counter.setValue(counterName, forKeyPath: "name")
+//
+//            do {
+//                try managedContext.save()
+//                self.counters.append(counter)
+//                DispatchQueue.main.async {
+//                    self.updateCounters()
+//                }
+//            } catch let error as NSError {
+//                print("Could not save. \(error), \(error.userInfo)")
+//            }
+//        }
+//
+//        let cancelAction = UIAlertAction(title: "Cancel",
+//                                         style: .cancel)
+//
+//        alert.addTextField()
+//
+//        alert.addAction(saveAction)
+//        alert.addAction(cancelAction)
+//
+//        present(alert, animated: true)
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "addCounterView")
+        self.present(controller!, animated: true)
     }
     
     
@@ -171,23 +179,29 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     public func setColorMode() {
         if self.isLightMode {
             self.view.backgroundColor = UIColor(patternImage: UIImage(named: "LightBackground")!)
-            UIApplication.shared.statusBarStyle = .default
+            self.style = .default
+            
         } else {
             self.view.backgroundColor = UIColor(patternImage: UIImage(named: "DarkBackground")!)
-            UIApplication.shared.statusBarStyle = .lightContent
+            self.style = .lightContent
         }
+        setNeedsStatusBarAppearanceUpdate()
         self.updateCounters()
         UIView.animate(withDuration: 0.3) {
             if self.isLightMode {
                 self.settingsButton.tintColor = .black
                 self.addButton.tintColor = .black
                 self.titleLabel.textColor = .black
+                self.helperText.textColor = .black
                 self.separatorView.backgroundColor = .black
+                self.helperIcon.tintColor = .black
             } else {
                 self.settingsButton.tintColor = .white
                 self.addButton.tintColor = .white
                 self.titleLabel.textColor = .white
+                self.helperText.textColor = .white
                 self.separatorView.backgroundColor = .white
+                self.helperIcon.tintColor = .white
             }
         }
     }

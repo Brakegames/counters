@@ -3,19 +3,41 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "closure #1 in CounterCell.awakeFromNib():CounterCell.swift">
+         contextName = "closure #1 in CounterCell.updateCell():CounterCell.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.counterValue">
+               value = "self.counterObj?.value(forKey: &quot;step&quot;) as! Double">
             </PersistentString>
             <PersistentString
-               value = "counterObj">
+               value = "self.counterObj?.value(forKey: &quot;step&quot;)">
+            </PersistentString>
+            <PersistentString
+               value = "String(self.counterObj?.value(forKey: &quot;step&quot;) as! Double)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AddCounterController.onSaveButton():AddCounterController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "selectedStep">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "CounterCell.awakeFromNib():CounterCell.swift">
          <PersistentStrings>
+            <PersistentString
+               value = "counterObj">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in CounterCell.awakeFromNib():CounterCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.counterValue">
+            </PersistentString>
             <PersistentString
                value = "counterObj">
             </PersistentString>
